@@ -1,0 +1,40 @@
+<h1><%= @question.title %> </h1>
+
+<p><%= @question.content %></p>
+
+<h2>Answers</h2>
+<table>
+  <% @answers.each do |answer| %>
+    <tr>
+      <td><%= link_to answer.title, answer_path(answer) %></td>
+      <td><%= pluralize(answer.votes.count, "vote")%></td>
+      <td><%= button_to  "+1", upvote_answer_path(answer), method: :post %></td>
+      <td><%= button_to "-1", downvote_answer_path(answer), method: :post %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= form_for :answer, url: answers_path  do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= hidden_field :answer, :question_id, :value =>  @question.id %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to "Destroy", question_path(@question), method: :delete, data: {confirm: "Are you Sure"} %>
+<%= link_to "Edit", edit_question_path(@question) %>
+<%= link_to "Back", questions_path %>

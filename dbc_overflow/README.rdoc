@@ -1,0 +1,3 @@
+== README
+
+* The intent of this proyect is to create a complete clone of Stackoverflow, this include replicating the database schema, using the MVC pattern , and creating a fullstack application using the Rails framework, that includes a full suite for testing, and both fron-end and back-end work.
