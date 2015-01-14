@@ -4,26 +4,24 @@ module Github
     include HTTParty
     base_uri "https://api.github.com"
 
-    def gets(endpoint, access_token)
-      response = self.class.get("/#{endpoint}",
-                                {:params => {:access_token => access_token},
-                                    :accept => :json}, headers: {"User-Agent" => "juan267"})
-      return JSON.parse(response.body)
+
+    def zen(access_token)
+      headers ={"User-Agent" => "juan267"}
+      response = self.class.get('/zen',:query => {:access_token => access_token})
+      if response.headers['status'] == '403 Forbidden'
+        Quote.rand_quote
+      else
+        Quote.create(quote:response)
+        return response
+      end
     end
 
-    def posts(endpoint)
-      response = self.class.get("/#{endpoint}", headers: {"User-Agent" => "juan267"})
+    def organization(access_token, user)
+      headers ={"User-Agent" => "juan267"}
+      response = self.class.get("/users/#{user}/orgs", query: {:access_token => access_token.to_s}, headers: headers)
 
       return JSON.parse(response.body)
     end
-
-    # def authenticated?
-    #   session[:access_token]
-    # end
-
-    # def authenticate!
-    #   erb :index, :locals => {:client_id => CLIENT_ID}
-    # end
 
   end
 

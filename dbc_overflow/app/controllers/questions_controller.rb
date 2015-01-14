@@ -1,7 +1,18 @@
 class QuestionsController < ApplicationController
 
   def index
+    api = Github::Client.new
     @questions = Question.all
+    @response = api.zen(ENV['GIT'])
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def new
+    @question = Question.new
   end
 
   def show
@@ -10,9 +21,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @questions = Question.all
     @question = Question.new(question_params)
     @question.save
-    redirect_to @question
+    # redirect_to @question
   end
 
   def edit
@@ -36,15 +48,17 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
+  @questions = Question.all
    @question = Question.find(params[:id])
    @question.votes.create
-   redirect_to questions_path
+   # redirect_to questions_path
   end
 
   def downvote
+    @questions = Question.all
     @question = Question.find(params[:id])
     @question.votes.last.destroy
-    redirect_to questions_path
+    # redirect_to questions_path
   end
 
   private

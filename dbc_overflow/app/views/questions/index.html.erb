@@ -1,29 +1,8 @@
 <h1>Questions</h1>
-<table>
-  <% @questions.each do |question| %>
-    <tr>
-      <td><%= link_to question.title, question_path(question) %></td>
-      <td><%= pluralize(question.votes.count, "vote")%></td>
-      <td><%= button_to '+1', upvote_question_path(question), method: :post %></td>
-      <td><%= button_to '-1', downvote_question_path(question), method: :post %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="questions"><%= render @questions %></div>
 
+<%= link_to "New Question", new_question_path, remote: true %>
+<div id="question-form" style="display:none">
+</div>
 
-<%= form_for :question, url: questions_path do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-
+<p><%= @response %></p>
