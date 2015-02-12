@@ -48,7 +48,7 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
-  @questions = Question.all
+   @questions = Question.all
    @question = Question.find(params[:id])
    @question.votes.create
    # redirect_to questions_path

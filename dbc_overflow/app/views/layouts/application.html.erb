@@ -2,13 +2,86 @@
 <html>
 <head>
   <title>DbcOverflow</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="/combo/1.17.30?/css/layouts/marketing.css">
+  <script src="http://yui.yahooapis.com/combo?3.17.2/yui/yui-min.js"></script>
+  <script charset="utf-8" id="yui_3_17_2_1_1421355777364_2" src="http://yui.yahooapis.com/combo?3.17.2/oop/oop-min.js&amp;3.17.2/event-custom-base/event-custom-base-min.js&amp;3.17.2/event-base/event-base-min.js&amp;3.17.2/dom-core/dom-core-min.js&amp;3.17.2/dom-base/dom-base-min.js&amp;3.17.2/selector-native/selector-native-min.js&amp;3.17.2/selector/selector-min.js&amp;3.17.2/node-core/node-core-min.js&amp;3.17.2/dom-style/dom-style-min.js&amp;3.17.2/node-base/node-base-min.js&amp;3.17.2/event-delegate/event-delegate-min.js&amp;3.17.2/node-event-delegate/node-event-delegate-min.js" async=""></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="header">
+  <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+    <%= link_to "JuanFlow", root_path , class: "pure-menu-heading"  %>
+    <ul>
+      <li class="pure-menu-selected"><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Tour", "#" %></li>
+      <li><%= link_to "Sign Up", '#' %></li>
+    </ul>
+  </div>
+</div>
 
-<%= yield %>
+<div class="splash-container" id="yui_3_17_2_1_1421352637333_10">
+    <div class="splash">
+        <h1 class="splash-head">Juan Flow</h1>
+        <p class="splash-subhead">
+            <%= @response %>
+        </p>
+        <p>
+            <%= link_to "New Question", new_question_path, class: "pure-button pure-button-primary", remote: true %>
+        </p>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-md-2">
+        <form action="">
+
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="content-wrapper">
+  <%= yield %>
+
+<div class='content'>
+  <h2 class="content-head is-center">Sign up to create Shitty questions</h2>
+  <div class='pure-g'>
+    <div class='l-box-lrg-u-l pure-u-md-2-5'>
+      <form class="pure-form pure-form-stacked">
+        <fieldset>
+          <label for="name">Your Name</label>
+          <input type="text" id='name' placeholder='your name'>
+
+          <label for="email">Your Email</label>
+          <input id="email" type="text" placeholder="Your Email">
+
+          <button type='submit' class="pure-button">Sign up</button>
+        </fieldset>
+      </form>
+    </div>
+
+   <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+        <h4>Contact Us</h4>
+          <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+          </p>
+
+        <h4>More Information</h4>
+          <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
 
 </body>
 </html>
